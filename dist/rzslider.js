@@ -74,9 +74,9 @@
       return factory;
     })
 
-    .value('throttle',
+    .value('rzThrottle',
     /**
-     * throttle
+     * rzThrottle
      *
      * Taken from underscore project
      *
@@ -121,7 +121,7 @@
       };
     })
 
-    .factory('RzSlider', ['$timeout', '$document', '$window', 'RzSliderOptions', 'throttle', function($timeout, $document, $window, RzSliderOptions, throttle) {
+    .factory('RzSlider', ['$timeout', '$document', '$window', 'RzSliderOptions', 'rzThrottle', function($timeout, $document, $window, RzSliderOptions, rzThrottle) {
       'use strict';
 
       /**
@@ -286,7 +286,7 @@
 
           // Watch for changes to the model
 
-          thrLow = throttle(function() {
+          thrLow = rzThrottle(function() {
             self.setMinAndMax();
             self.updateLowHandle(self.valueToOffset(self.scope.rzSliderModel));
             self.updateSelectionBar();
@@ -298,7 +298,7 @@
 
           }, self.interval);
 
-          thrHigh = throttle(function() {
+          thrHigh = rzThrottle(function() {
             self.setMinAndMax();
             self.updateHighHandle(self.valueToOffset(self.scope.rzSliderHigh));
             self.updateSelectionBar();
@@ -955,7 +955,7 @@
          /**
          * Ensure that the position rendered is within the slider bounds, even if the value is not
          *
-         * @param {number} val 
+         * @param {number} val
          * @returns {number}
          */
         sanitizeOffsetValue: function(val)
